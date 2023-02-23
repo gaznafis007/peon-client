@@ -9,9 +9,9 @@ import {
   updateProfile,
 } from "firebase/auth";
 
+export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const auth = getAuth(app);
-  const AuthContext = createContext();
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
   const signUp = (email, password) => {

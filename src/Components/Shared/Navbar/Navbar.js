@@ -1,33 +1,101 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthProvider";
+import { CgProfile } from "react-icons/cg";
+import { FiShoppingCart } from "react-icons/fi";
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
+  const userAction = (
+    <>
+      {user?.uid ? (
+        <>
+          <li>
+            <Link to="/" className="hover:text-primary text-xl mr-2 ">
+              <FiShoppingCart />
+            </Link>
+          </li>
+          <li>
+            <Link to="/" className="hover:text-primary text-xl">
+              <CgProfile />
+            </Link>
+          </li>
+          <li>
+            <Link to="/" className="hover:text-primary text-xl">
+              sign out
+            </Link>
+          </li>
+        </>
+      ) : (
+        <li>
+          <Link to="/" className="hover:text-primary text-xl">
+            sign in
+          </Link>
+        </li>
+      )}
+    </>
+  );
   const navItems = (
     <>
       <li>
-        <Link className="hover:text-primary text-xl" to="/">
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? " border-b-2 border-primary p-3 text-xl inline-block"
+              : "hover:text-primary text-xl inline-block p-3 border-none border-b-0"
+          }
+          to="/"
+        >
           home
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link className="hover:text-primary text-xl" to="/">
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? " border-b-2 border-primary p-3 text-xl inline-block"
+              : "hover:text-primary text-xl inline-block p-3 border-none border-b-0"
+          }
+          to="/books"
+        >
           books
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link className="hover:text-primary text-xl" to="/">
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? " border-b-2 border-primary p-3 text-xl inline-block"
+              : "hover:text-primary text-xl inline-block p-3 border-none border-b-0"
+          }
+          to="/review"
+        >
           book review
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link className="hover:text-primary text-xl" to="/">
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? " border-b-2 border-primary p-3 text-xl inline-block"
+              : "hover:text-primary text-xl inline-block p-3 border-none border-b-0"
+          }
+          to="/blog"
+        >
           blog
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link className="hover:text-primary text-xl" to="/">
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? " border-b-2 border-primary p-3 text-xl inline-block"
+              : "hover:text-primary text-xl inline-block p-3 border-none border-b-0"
+          }
+          to="/aboutus"
+        >
           about us
-        </Link>
+        </NavLink>
       </li>
     </>
   );
@@ -38,7 +106,12 @@ const Navbar = () => {
         <Link to="/">Peon</Link>
       </h2>
       <div>
-        <ul className="text-primaryLight flex gap-3 capitalize">{navItems}</ul>
+        <ul className="text-primaryLight flex gap-4 capitalize">{navItems}</ul>
+      </div>
+      <div>
+        <ul className="flex items-center gap-4 text-primaryLight">
+          {userAction}
+        </ul>
       </div>
     </nav>
   );

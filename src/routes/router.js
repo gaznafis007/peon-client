@@ -1,3 +1,4 @@
+import Books from "../pages/Books/Books";
 import Home from "../pages/Home/Home";
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -11,6 +12,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/books",
+        element: <Books />,
       },
     ],
   },
