@@ -1,11 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
-import { CgProfile } from "react-icons/cg";
+import { CgMenu, CgProfile } from "react-icons/cg";
 import { FiShoppingCart } from "react-icons/fi";
+import { MdOutlineArrowBack } from "react-icons/md";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
+  const [toggle, setToggle] = useState(false);
+  console.log(toggle);
+  const handleToggle = () => {
+    setToggle(!toggle);
+  };
   const userAction = (
     <>
       {user?.uid ? (
@@ -28,7 +34,10 @@ const Navbar = () => {
         </>
       ) : (
         <li>
-          <Link to="/" className="hover:text-primary text-xl">
+          <Link
+            to="/"
+            className="hover:text-primary text-xl inline-block p-3 self-center"
+          >
             sign in
           </Link>
         </li>
@@ -106,9 +115,25 @@ const Navbar = () => {
         <Link to="/">Peon</Link>
       </h2>
       <div>
-        <ul className="text-primaryLight flex gap-4 capitalize">{navItems}</ul>
+        <ul className="text-primaryLight gap-4 capitalize hidden md:flex">
+          {navItems}
+        </ul>
+        <div className="flex flex-col md:hidden relative">
+          <span
+            className="text-2xl text-primary font-semibold cursor-pointer block"
+            onClick={handleToggle}
+          >
+            {toggle ? <MdOutlineArrowBack /> : <CgMenu />}
+          </span>
+          {toggle && (
+            <ul className="text-[12px] text-white capitalize absolute p-3 bg-secondary items-center ease-in transition-opacity right-10 duration-500">
+              {navItems}
+              {userAction}
+            </ul>
+          )}
+        </div>
       </div>
-      <div>
+      <div className="hidden md:block">
         <ul className="flex items-center gap-4 text-primaryLight">
           {userAction}
         </ul>
