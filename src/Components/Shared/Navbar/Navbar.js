@@ -126,7 +126,7 @@ const Navbar = () => {
             {toggle ? <MdOutlineArrowBack /> : <CgMenu />}
           </span>
           {toggle && (
-            <ul className="text-[12px] text-white capitalize absolute p-3 bg-secondary items-center ease-in transition-opacity right-10 duration-500">
+            <ul className="text-[12px] text-white capitalize absolute p-3 bg-secondary items-center ease-in transition-opacity right-10 duration-500 z-10">
               {navItems}
               {userAction}
             </ul>

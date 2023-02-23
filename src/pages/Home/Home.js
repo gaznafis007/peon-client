@@ -1,11 +1,15 @@
 import React from "react";
 import Hero from "./Hero/Hero";
+import TopSale from "./TopSale/TopSale";
+import UpcomingEvent from "./UpcomingEvent/UpcomingEvent";
 
 const Home = () => {
   return (
-    <div>
+    <main>
       <Hero />
-    </div>
+      <TopSale />
+      <UpcomingEvent />
+    </main>
   );
 };
 
