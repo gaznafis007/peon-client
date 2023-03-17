@@ -1,4 +1,5 @@
 import React from "react";
+import Blog from "./Blog/Blog";
 import Books from "./Books/Books";
 import Hero from "./Hero/Hero";
 import TopSale from "./TopSale/TopSale";
@@ -11,6 +12,7 @@ const Home = () => {
       <TopSale />
       <UpcomingEvent />
       <Books />
+      <Blog />
     </main>
   );
 };
